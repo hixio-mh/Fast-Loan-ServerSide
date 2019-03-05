@@ -1,0 +1,38 @@
+
+
+___selected pj: WebApi\FwApi
+Add-migration Init -context FwCore.DBContext.AppDataDbContext -project FwCore.DBContext
+update-database -context FwCore.DBContext.AppDataDbContext -project FwCore.DBContext
+
+Add-migration Init1 -context FwCore.Identity.ApplicationDbContext -project FwCore.Identity
+update-database -context FwCore.Identity.ApplicationDbContext -project FwCore.Identity
+
+
+
+
+
+EMI = [P x R x (1+R)^N]/[(1+R)^N-1],
+where P stands for the loan amount or principal, 
+R is the interest rate per month 
+[if the interest rate per annum is 11%, then the rate of interest will be 11/(12 x 100)], 
+and N is the number of monthly instalments.
+
+
+{
+            var loanAmount = 10000;
+            var interest = 5.0;
+            var numberOfYears = 5;
+
+            // rate of interest and number of payments for monthly payments
+            var rateOfInterest = interest / 1200;
+            var numberOfPayments = numberOfYears * 12;
+
+            // loan amount = (interest rate * loan amount) / (1 - (1 + interest rate)^(number of payments * -1))
+            var paymentAmount = (rateOfInterest * loanAmount) / (1 - Math.Pow(1 + rateOfInterest, numberOfPayments * -1));
+
+            Console.WriteLine(paymentAmount);
+        }
+
+
+
+
